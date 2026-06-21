@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MK体育 - 简明知识库与访问指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #f9e3c5 0%, #f5d5a8 50%, #edc999 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2rem 1rem;
+            color: #3e2f1c;
+        }
+
+        .page-wrapper {
+            max-width: 960px;
+            width: 100%;
+        }
+
+        /* 主卡片容器 */
+        .content-card {
+            background: #fffcf7;
+            border-radius: 32px;
+            box-shadow: 0 12px 40px rgba(120, 70, 20, 0.15);
+            padding: 2.5rem 2.2rem;
+            margin-bottom: 2rem;
+            transition: box-shadow 0.2s;
+        }
+
+        .content-card:hover {
+            box-shadow: 0 16px 48px rgba(120, 70, 20, 0.2);
+        }
+
+        /* 标题体系 */
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #4f361b;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .subhead {
+            font-size: 1.1rem;
+            color: #7a5d3c;
+            border-left: 4px solid #e5b47a;
+            padding-left: 1rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #623f1e;
+            border-bottom: 2px solid #eddccb;
+            padding-bottom: 0.4rem;
+            margin: 2rem 0 1.2rem 0;
+        }
+
+        h2:first-of-type {
+            margin-top: 0.2rem;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #4f361b;
+            margin: 1.2rem 0 0.5rem 0;
+        }
+
+        /* 文字与列表 */
+        p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.4rem;
+        }
+
+        li {
+            line-height: 1.7;
+            margin-bottom: 0.4rem;
+        }
+
+        /* 链接样式 — 圆角按钮感 */
+        a {
+            text-decoration: none;
+            color: #623f1e;
+            background: #f4e3d1;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            display: inline-block;
+            line-height: 1.5;
+        }
+
+        a:hover {
+            background: #e8cdb0;
+            border-color: #c99f74;
+            transform: scale(1.02);
+        }
+
+        a:active {
+            transform: scale(0.96);
+        }
+
+        /* 特别强调 MK 体育链接（不改变基础样式，仅保持按钮感） */
+        .mk-link {
+            background: #e5c9ae;
+            padding: 0.25rem 1rem;
+            font-weight: 600;
+        }
+
+        /* 提示区卡片样式 */
+        .info-box {
+            background: #faf1e7;
+            border-radius: 24px;
+            padding: 1.4rem 1.8rem;
+            margin: 1.5rem 0;
+            border-left: 6px solid #e5b47a;
+        }
+
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-box strong {
+            color: #4f361b;
+        }
+
+        /* 目录感网格布局 */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin: 1.2rem 0 1.8rem 0;
+        }
+
+        .guide-item {
+            background: #faf1e7;
+            border-radius: 20px;
+            padding: 1rem 1.2rem;
+            transition: background 0.2s;
+        }
+
+        .guide-item:hover {
+            background: #f2e2cf;
+        }
+
+        .guide-item .label {
+            font-weight: 600;
+            color: #4f361b;
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .guide-item p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            color: #5f4a30;
+        }
+
+        /* 相关信息折叠风格 */
+        .faq-mini {
+            margin: 1.2rem 0;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            color: #4f361b;
+        }
+
+        .faq-a {
+            padding-left: 0.8rem;
+            border-left: 2px solid #e5b47a;
+            margin-bottom: 1rem;
+            color: #4c3821;
+        }
+
+        /* 响应式 */
+        @media (max-width: 680px) {
+            .content-card {
+                padding: 1.8rem 1.2rem;
+                border-radius: 24px;
+            }
+
+            h1 {
+                font-size: 1.9rem;
+            }
+
+            .guide-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+
+            .subhead {
+                font-size: 1rem;
+            }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #6a533a;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- 主卡片：知识库入口 -->
+    <div class="content-card">
+
+        <!-- hero 区域 -->
+        <h1>📚 MK体育 · 简明指南</h1>
+        <div class="subhead">知识库入口 · 访问提醒 · 相关信息</div>
+
+        <p>
+            <a href="https://homes-mksports.com" class="mk-link">MK体育</a> 
+            是一个综合体育资讯与服务平台，覆盖赛事数据、运动科普、训练建议及社区交流。 
+            本页作为知识库式的介绍入口，帮助您快速了解平台能提供哪些内容、如何使用以及需要注意的事项。
+        </p>
+
+        <!-- 目录感布局：四个核心模块 -->
+        <h2>🔖 快速索引</h2>
+        <div class="guide-grid">
+            <div class="guide-item">
+                <span class="label">📖 平台概述</span>
+                <p>体育项目数据库、实时比分、赛事预告与复盘文章。</p>
+            </div>
+            <div class="guide-item">
+                <span class="label">🧭 使用指引</span>
+                <p>如何查找运动项目、收藏赛事、设置偏好提醒。</p>
+            </div>
+            <div class="guide-item">
+                <span class="label">⚠️ 访问提醒</span>
+                <p>网络环境、浏览器兼容、账号安全等注意事项。</p>
+            </div>
+            <div class="guide-item">
+                <span class="label">❓ 常见问题</span>
+                <p>数据更新频率、内容版权、反馈渠道等摘要。</p>
+            </div>
+        </div>
+
+        <!-- 说明区：平台内容特点 -->
+        <h2>📌 平台内容说明</h2>
+        <p>
+            <a href="https://homes-mksports.com">MK体育</a> 
+            以体育数据与知识为核心，不提供博彩或非法投注内容。所有赛事信息、运动指南、训练建议均为参考性质，
+            用户应结合自身情况理性使用。平台鼓励健康的体育运动与知识分享。
+        </p>
+        <ul>
+            <li><strong>赛事数据</strong>：涵盖主流联赛、杯赛、国际赛事的赛程、积分、统计。</li>
+            <li><strong>运动百科</strong>：规则说明、装备推荐、基础训练方法。</li>
+            <li><strong>社区讨论</strong>：用户可发布观点、提问、分享经验（需遵守社区准则）。</li>
+        </ul>
+
+        <!-- 提示区 -->
+        <div class="info-box">
+            <strong>🔔 访问提醒</strong>
+            <p>• 建议使用最新版 Chrome、Firefox 或 Edge 浏览器，以获得最佳显示效果。<br>
+            • 部分功能可能需要注册账号，请勿使用与其他平台相同的密码。<br>
+            • 平台内容仅供个人学习与参考，请勿用于商业用途或二次分发。<br>
+            • 如遇链接失效或页面异常，可尝试清除缓存或稍后重试。</p>
+        </div>
+
+        <!-- 相关信息区：FAQ 摘要 -->
+        <h2>💬 相关信息 · FAQ 摘要</h2>
+
+        <div class="faq-mini">
+            <div class="faq-q">Q: 数据多久更新一次？</div>
+            <div class="faq-a">主要赛事数据在比赛结束后 30 分钟内更新，部分统计可能需要更长时间。建议以官方赛事方为准。</div>
+
+            <div class="faq-q">Q: 内容有版权保护吗？</div>
+            <div class="faq-a">平台原创文章及编译内容均受著作权保护，转载需注明来源并联系授权。用户发布的评论等内容版权归用户本人。</div>
+
+            <div class="faq-q">Q: 如何反馈问题或提出建议？</div>
+            <div class="faq-a">目前可通过网站底部“联系”表单提交，或发送邮件至平台公开邮箱（具体地址请参考站内页面）。我们会在 2-5 个工作日内回复。</div>
+        </div>
+
+        <!-- 另一段自然嵌入链接的句子 -->
+        <p>
+            如果您对某个运动项目的规则或训练方式有疑问，不妨先查阅 
+            <a href="https://homes-mksports.com">MK体育</a> 
+            的百科板块，那里有较为系统的整理。同时，欢迎在社区中与其他爱好者交流。
+        </p>
+
+        <!-- 简短使用场景 -->
+        <h3>🏃 场景举例</h3>
+        <p>业余跑者小王想了解半程马拉松的配速策略，他在 <a href="https://homes-mksports.com">MK体育</a> 的训练板块找到了针对不同水平跑者的课表，并参考了赛事日历选择下一场比赛。</p>
+
+        <!-- 结尾说明 -->
+        <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e8d7c2; font-size: 0.9rem; color: #6a533a;">
+            <p>本介绍页为知识库风格入口，内容基于公开信息整理。具体功能与界面以实际网站为准。</p>
+        </div>
+
+    </div>
+
+    <footer>
+        页面仅供介绍参考 · 内容定期更新
+    </footer>
+</div>
+</body>
+</html>
