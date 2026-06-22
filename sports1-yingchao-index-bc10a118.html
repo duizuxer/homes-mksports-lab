@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英超直播 · 简明导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f7f9fc;
+            color: #1e2a3a;
+            line-height: 1.7;
+        }
+
+        /* 深色头图 ———— 导航感 */
+        .hero {
+            background: linear-gradient(145deg, #0b1622 0%, #1b2a3f 100%);
+            padding: 2.8rem 1.5rem 3.2rem;
+            text-align: center;
+            color: #e8edf4;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: -20%;
+            width: 200%;
+            height: 180%;
+            background: radial-gradient(circle at 30% 40%, rgba(120, 180, 255, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .sub {
+            font-size: 1rem;
+            opacity: 0.75;
+            margin-top: 0.7rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            padding-bottom: 0.3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 浅色正文区 */
+        .content {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2.8rem 1.5rem 4rem;
+        }
+
+        .intro p {
+            margin-bottom: 1.3rem;
+            font-size: 1.05rem;
+            color: #2b3b4e;
+        }
+
+        .intro a {
+            color: #1e6f9f;
+            text-decoration: none;
+            border-bottom: 1px dotted #9bbdd6;
+            transition: border-color 0.2s, color 0.2s;
+            font-weight: 500;
+        }
+
+        .intro a:hover {
+            color: #0c4b73;
+            border-bottom: 1px solid #1e6f9f;
+        }
+
+        /* 三个场景模块 ———— 卡片轻量 */
+        .scenes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2.8rem 0 2.2rem;
+        }
+
+        .scene-item {
+            flex: 1 1 200px;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.6rem 1.2rem 1.4rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03), 0 1px 4px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s ease, box-shadow 0.25s;
+            border: 1px solid #e9eef3;
+        }
+
+        .scene-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(26, 67, 113, 0.06);
+        }
+
+        .scene-item .emoji-tag {
+            display: inline-block;
+            font-size: 1.6rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .scene-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: #1a314a;
+        }
+
+        .scene-item p {
+            font-size: 0.95rem;
+            color: #4d5f72;
+            line-height: 1.6;
+        }
+
+        /* 常见说明 / 提示块 */
+        .notice-area {
+            background: #eef3f9;
+            border-radius: 20px;
+            padding: 1.8rem 2rem 1.8rem 2.2rem;
+            margin: 2.2rem 0 1.8rem;
+            border-left: 4px solid #1e6f9f;
+        }
+
+        .notice-area h4 {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.7rem;
+            color: #0f293f;
+        }
+
+        .notice-area ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .notice-area li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.4rem;
+            position: relative;
+            color: #1f3347;
+        }
+
+        .notice-area li::before {
+            content: "·";
+            position: absolute;
+            left: 0.2rem;
+            color: #1e6f9f;
+            font-weight: 700;
+        }
+
+        .notice-area a {
+            color: #1e6f9f;
+            border-bottom: 1px dotted #9bbdd6;
+            text-decoration: none;
+        }
+
+        .notice-area a:hover {
+            border-bottom: 1px solid #1e6f9f;
+        }
+
+        /* FAQ 摘要 ———— 极简 */
+        .faq-mini {
+            margin: 2.2rem 0 1rem;
+            border-top: 1px solid #dce4ed;
+            padding-top: 1.8rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.7rem;
+            border-bottom: 1px solid #e4eaf2;
+            padding-bottom: 0.7rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #1b3b55;
+            padding: 0.3rem 0;
+            font-size: 1rem;
+            transition: color 0.15s;
+        }
+
+        .faq-mini summary:hover {
+            color: #0c4b73;
+        }
+
+        .faq-mini details p {
+            margin: 0.6rem 0 0.2rem 1.2rem;
+            color: #3d5368;
+            font-size: 0.95rem;
+        }
+
+        .footer-note {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: #6b7f93;
+            border-top: 1px solid #dce4ed;
+            padding-top: 1.8rem;
+            text-align: center;
+        }
+
+        .footer-note a {
+            color: #1e6f9f;
+            text-decoration: none;
+            border-bottom: 1px dotted #b0c8dd;
+        }
+
+        .footer-note a:hover {
+            border-bottom: 1px solid #1e6f9f;
+        }
+
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .content {
+                padding: 2rem 1.2rem 3rem;
+            }
+
+            .scenes {
+                flex-direction: column;
+            }
+
+            .scene-item {
+                flex: 1 1 auto;
+            }
+
+            .notice-area {
+                padding: 1.4rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="hero">
+    <h1>英超直播 · 简明指南</h1>
+    <div class="sub">观赛提醒与场景备忘</div>
+</header>
+
+<main class="content">
+
+    <section class="intro">
+        <p>
+            每个周末，英超的赛程总会填满许多人的空闲时间。如果你也习惯在屏幕前关注即时战况，那么一个稳定、直接的直播入口就显得很重要。
+            对多数人来说，<a href="https://sports1-yingchao.com">英超直播</a>已经是一个被反复验证的选择——没有复杂的跳转，页面加载后即可看到当前场次列表。
+        </p>
+        <p>
+            不过任何直播服务都会受到网络、版权或临时检修的影响，因此这里整理了几条简单的提醒和场景用法，希望能帮你节省一点摸索的时间。
+            这些内容不追求面面俱到，只希望你在需要时能快速进入状态。
+        </p>
+    </section>
+
+    <!-- 三个场景模块 -->
+    <div class="scenes">
+        <div class="scene-item">
+            <div class="emoji-tag">🏟️</div>
+            <h3>周末连场</h3>
+            <p>周六晚到周一凌晨，比赛密集。适合提前打开页面，<a href="https://sports1-yingchao.com" style="border: none; font-weight: 400;">英超直播</a>通常会在开赛前十分钟放出信号，建议提早选好频道。</p>
+        </div>
+        <div class="scene-item">
+            <div class="emoji-tag">📱</div>
+            <h3>移动端简览</h3>
+            <p>通勤或外出时，用手机浏览器进入即可。界面针对小屏做了适配，比分和直播流清晰可辨，不必下载额外应用。</p>
+        </div>
+        <div class="scene-item">
+            <div class="emoji-tag">🔁</div>
+            <h3>多线路备用</h3>
+            <p>如果某一画面卡顿或失效，页面通常备有切换线路的选项。在比赛日高峰期可以尝试切换，维持观看连续性。</p>
+        </div>
+    </div>
+
+    <!-- 常见说明块（提示风格） -->
+    <div class="notice-area">
+        <h4>访问提醒</h4>
+        <ul>
+            <li>建议使用最新版浏览器，避免因插件拦截导致直播无法加载。</li>
+            <li>部分比赛可能因地区版权临时下架，可以稍后再刷新看看。</li>
+            <li>页面不会主动推送通知，所有内容需要你自己点击进入——包括<a href="https://sports1-yingchao.com">英超直播</a>这个链接，它就在句子中间，没有隐藏。</li>
+            <li>遇到任何加载问题，优先检查网络，其次尝试清除缓存或更换 DNS。</li>
+        </ul>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+        <details>
+            <summary>为什么有时比赛列表是空的？</summary>
+            <p>非比赛日或休赛期，页面可能不显示赛程。通常开赛前 2–3 小时才会出现直播入口，属于正常情况。</p>
+        </details>
+        <details>
+            <summary>是否需要注册或付费？</summary>
+            <p>就目前的使用体验而言，直接访问即可观看，不需要注册账号。不过某些高清线路可能标注为试用，具体以页面实际提示为准。</p>
+        </details>
+        <details>
+            <summary>画质和延迟如何？</summary>
+            <p>多数源为 720p–1080p，延迟大约在 20–40 秒之间，适合普通观赛。如果对实时性要求极高（如边看边聊），可以考虑适当提前打开。</p>
+        </details>
+    </div>
+
+    <div class="footer-note">
+        <p>一个轻量导航页面 · 所有链接指向 <a href="https://sports1-yingchao.com">英超直播</a>（同一个目标）</p>
+        <p style="margin-top: 0.3rem;">内容仅供个人参考，实际功能以外站为准。</p>
+    </div>
+
+</main>
+
+</body>
+</html>
